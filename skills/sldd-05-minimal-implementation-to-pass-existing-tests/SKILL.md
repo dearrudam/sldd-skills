@@ -1,6 +1,6 @@
 ---
 name: sldd-05-minimal-implementation-to-pass-existing-tests
-description: Write the minimal production code needed to make all existing failing tests pass. No extra features, no test modifications, no refactoring. Use after tests are written and confirmed failing.
+description: Implement minimal production changes to pass Step 04 tests without modifying tests.
 metadata:
   step: "05"
   type: implementation
@@ -8,31 +8,60 @@ metadata:
 
 # Skill: Minimal Implementation to Pass Existing Tests
 
-**Context:**
-You are a senior engineer continuing strict TDD. Tests have been written and are currently failing. Your job is to write the minimal production code needed to make all tests pass — nothing more.
+Use `sldd-88-shared-templates-and-protocols` for shared gates, save decision, and templates.
 
-Low-level design: <provide the approved low-level design>
+## Objective
 
-Existing failing tests: <provide the test files or reference their location>
+Implement only the minimum production changes required to pass Step 04 tests without modifying test files.
 
-**Objective:**
-Implement only the production code required to make all existing tests pass. Do not add features not covered by tests. Do not refactor unless tests fail.
+## Gate + Resume Checks
 
-**Audience:**
-Engineers and code reviewers verifying that implementation matches the low-level design and test intentions.
+- Require Steps 01-04 approved.
+- Require Step 04 failing-test evidence.
+- For existing codebases, require Step 99 approved.
+- Reject requests to modify tests or bypass Red/Green order.
+- Reject inconsistent checklist states.
 
-**Style:**
-Production code written in the project's native language. Follow existing code style and architecture conventions. Keep implementation focused and minimal.
+## Implementation Contract (Two-Phase Protocol)
 
-**Tone:**
-Strict. Only code that makes tests pass. No speculative features. If tests pass, you are done with this slice.
+### Phase A: Implementation Action Plan
+Present minimal production changes to pass existing tests. Approve before modifying production code.
 
-**Response:**
-Deliver:
-- Production code files (write implementation code only, no tests)
-- Commands to run the existing tests (to verify they pass)
-- Commands to verify framework/runtime versions (to confirm the environment)
-- Assumptions checklist (what assumptions did you make? are they in the low-level design?)
-- Expected test output summary (show which tests now pass)
+### Phase B: Green-Phase Evidence Report
+After implementation and verification, present passing evidence. Approve before saving.
 
-Imperative: Do not modify the tests. Do not add features. Do not refactor. If the low-level design seems wrong, propose a design amendment instead of changing architecture.
+## Draft Output
+
+Present:
+- Phase A implementation action plan
+- Phase B green-phase evidence report
+- confirmation that tests were not modified
+
+## Approval Protocol
+
+- Follow Step 88 two-phase approval behavior:
+  - approve Phase A plan before modifying production code,
+  - approve Phase B evidence report before saving artifacts.
+- Use `sldd-88-approval-helper` approval messaging.
+
+## Verification
+
+- Run tests and confirm previously failing tests pass.
+- Record commands and results.
+
+## Save Flow (after approval)
+
+1. Save `docs/specs/<feature-name>/05-minimal-implementation-report.md`.
+2. Verify artifact contains Step 05 report only.
+3. Update `SPEC.md` Step 05 `[x]` with link.
+4. Verify `SPEC.md` remains journal-only.
+5. Use `sldd-88-approval-helper` completion prompt.
+
+Apply Step 88 Section 5 (Shared Save Decision).
+
+## Response Format
+
+1. Gate and resume check result
+2. Phase A implementation action plan
+3. Phase B green-phase evidence summary
+4. Approval request and continue/hold prompt

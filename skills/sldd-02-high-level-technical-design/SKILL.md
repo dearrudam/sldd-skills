@@ -1,6 +1,6 @@
 ---
 name: sldd-02-high-level-technical-design
-description: Produce a high-level technical design with architecture diagram, component responsibilities, data flow, and test scenario map. Use after the product intent specification is approved.
+description: Produce Step 02 high-level design after prerequisite validation and save as a numbered artifact.
 metadata:
   step: "02"
   type: specification
@@ -8,30 +8,42 @@ metadata:
 
 # Skill: High-Level Technical Design
 
-**Context:**
-You are a senior software architect designing solutions. You have reviewed the product intent spec and are now translating business requirements into system design.
+Use `sldd-88-shared-templates-and-protocols` for shared gates, save decision, and templates.
 
-Intent spec: <provide the approved product intent specification>
+## Objective
 
-**Objective:**
-Produce a high-level technical design that translates the product intent into architecture and system boundaries, without implementation details or code.
+Produce approved Step 02 high-level design aligned to Step 01 and Step 99 (when required).
 
-**Audience:**
-Engineers, tech leads, and architects who will review this design and decide if it aligns with technical strategy and team capabilities.
+## Gate + Resume Checks
 
-**Style:**
-Text-based diagrams and structured sections. Visual representations in ASCII or text form are preferred (not code). Annotate relationships and data flows clearly.
+- Require Step 01 approved.
+- For existing codebases, require Step 99 approved.
+- Reject skip-ahead to implementation/tests.
+- Reject inconsistent checklist states.
 
-**Tone:**
-Clear and architectural. Explain trade-offs between alternatives. Flag constraints or concerns early.
+## Draft Output
 
-**Response:**
-Deliver exactly these sections in this order:
-- Architecture diagram in text form (ASCII or text-based visualization)
-- Component responsibilities (what each major component owns)
-- Data flow (how data moves between components)
-- Security and observability requirements (non-functional needs)
-- Key trade-offs and alternatives considered (why this design, not another)
-- High-level test scenario map (happy path, failure paths, and edge-case families)
+Create a draft with required Step 02 headings from Step 88 Section 6.
+Wait for approval.
 
-Do not generate implementation code or tests. Do not write code in any language.
+## Approval Protocol
+
+- Use `sldd-88-approval-helper` messaging.
+- Save/update only after explicit approval.
+
+## Save Flow (after approval)
+
+1. Save `docs/specs/<feature-name>/02-high-level-technical-design.md`.
+2. Verify artifact contains Step 02 content only.
+3. Update `SPEC.md` Step 02 `[x]` with link.
+4. Verify `SPEC.md` remains journal-only.
+5. Use `sldd-88-approval-helper` completion prompt.
+
+Apply Step 88 Section 5 (Shared Save Decision).
+
+## Response Format
+
+1. Gate and resume check result
+2. Draft summary with required Step 02 headings
+3. Approval request
+4. Continue/hold prompt

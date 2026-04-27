@@ -1,6 +1,6 @@
 ---
 name: sldd-01-product-intent-specification
-description: Produce a one-page product intent specification with problem statement, users, metrics, risks, and acceptance criteria in Given/When/Then format. Use before any technical design or implementation work begins.
+description: Produce Step 01 intent spec with strict gate/resume checks and artifact-first save flow.
 metadata:
   step: "01"
   type: specification
@@ -8,29 +8,40 @@ metadata:
 
 # Skill: Product Intent Specification
 
-**Context:**
-You are a product engineering assistant. You are helping a team prepare specification documents for feature development before any design or implementation work begins.
+Use `sldd-88-shared-templates-and-protocols` for shared gates, save decision, and templates.
 
-Feature idea: <provide feature idea>
+## Objective
 
-**Objective:**
-Produce a one-page product intent specification that aligns engineering and product teams on scope, success criteria, and constraints for this feature.
+Define and validate Step 01 product intent for downstream steps.
 
-**Audience:**
-Product managers, engineers, tech leads, and stakeholders making planning and prioritization decisions.
+## Gate + Resume Checks
 
-**Style:**
-Structured. Numbered sections. Explicit, actionable language. Avoid ambiguity.
+- Reject jump-ahead requests to design/tests/implementation.
+- If resuming from `SPEC.md`, reject invalid state where later steps are complete but Step 01 is not.
 
-**Tone:**
-Collaborative and clarifying. If information is missing or ambiguous, ask focused questions instead of making assumptions. Assume stakeholders want precision.
+## Draft Output
 
-**Response:**
-Deliver exactly these six sections in this order:
-1) Problem statement (one paragraph)
-2) Target users (bullet list)
-3) Success metrics (specific, measurable)
-4) Out of scope (explicit non-goals)
-5) Risks and assumptions (potential blockers or dependencies)
-6) Acceptance criteria in Given/When/Then format
-   - Include happy path, validation/failure cases, and at least one edge case per criterion
+Create a draft with required Step 01 headings from Step 88 Section 6.
+Wait for approval.
+
+## Approval Protocol
+
+- Use `sldd-88-approval-helper` messaging.
+- Save/update only after explicit approval.
+
+## Save Flow (after approval)
+
+1. Save `docs/specs/<feature-name>/01-product-intent-specification.md`.
+2. Verify artifact contains Step 01 content only.
+3. Update `SPEC.md` Step 01 `[x]` with link.
+4. Verify `SPEC.md` remains journal-only.
+5. Use `sldd-88-approval-helper` completion prompt.
+
+Apply Step 88 Section 5 (Shared Save Decision).
+
+## Response Format
+
+1. Gate and resume check result
+2. Draft summary with required Step 01 headings
+3. Approval request
+4. Continue/hold prompt

@@ -1,6 +1,6 @@
 ---
 name: sldd-03-low-level-design-and-version-policy
-description: Produce a detailed low-level design with API contracts, data models, error handling, test strategy, and dependency version policy. Use after the high-level design is approved.
+description: Produce Step 03 low-level design with API contracts, data models, error model, test strategy, and version policy.
 metadata:
   step: "03"
   type: specification
@@ -8,36 +8,43 @@ metadata:
 
 # Skill: Low-Level Design and Version Policy
 
-**Context:**
-You are a staff engineer preparing an implementation plan. You have the high-level design and must now specify concrete interfaces, data models, and version constraints so implementation work can be precise and testable.
+Use `sldd-88-shared-templates-and-protocols` for shared gates, save decision, and templates.
 
-High-level design: <provide the approved high-level technical design>
+## Objective
 
-**Objective:**
-Produce a detailed low-level design and implementation plan that specifies what to build, version constraints, and test strategy — enabling unambiguous work assignments.
+Produce approved Step 03 low-level design and version policy for Steps 04 and 05.
 
-**Audience:**
-Implementation engineers, QA, and architects who need to know exactly what to build and verify, including which versions are acceptable.
+## Gate + Resume Checks
 
-**Style:**
-Detailed and concrete. Specify interfaces, data models, and error handling explicitly. Include specific version and dependency requirements.
+- Require Step 01 and Step 02 approved.
+- For existing codebases, require Step 99 approved.
+- Reject implementation/test generation at this step.
+- Reject inconsistent checklist states.
 
-**Tone:**
-Precise. No ambiguity about version policy or technical decisions. Flag any gaps or assumptions.
+## Draft Output
 
-**Response:**
-Deliver exactly these sections in this order:
-- API contracts (endpoints, request/response schemas, error responses)
-- Data models (database schema or core domain objects)
-- Error model (what errors can occur and how to handle them)
-- Test strategy (testing approach and scenarios)
-- Test scenario catalog with edge cases (detailed testable scenarios, including boundaries, empty/large payloads, retries, concurrency, etc.)
-- Dependency/version policy (which versions of which dependencies are acceptable)
+Create a draft with required Step 03 headings from Step 88 Section 6.
+Include ordered implementation plan.
+Wait for approval.
 
-Version policy requirements must include:
-- Framework versions must be aligned with actively supported major versions
-- Runtime versions must use a currently supported release line
+## Approval Protocol
 
-After delivering the low-level design, produce a detailed ordered implementation plan listing every task (components, endpoints, data models, migrations, tests, configuration) as discrete sequenced steps small enough to evaluate individually. This plan is the checklist the team agrees on before any implementation prompt is sent.
+- Use `sldd-88-approval-helper` messaging.
+- Save/update only after explicit approval.
 
-Gate: present the high-level and low-level designs for review before any code is generated. Do not skip the review gate because AI can generate code quickly.
+## Save Flow (after approval)
+
+1. Save `docs/specs/<feature-name>/03-low-level-design-and-version-policy.md`.
+2. Verify artifact contains Step 03 content only.
+3. Update `SPEC.md` Step 03 `[x]` with link.
+4. Verify `SPEC.md` remains journal-only.
+5. Use `sldd-88-approval-helper` completion prompt.
+
+Apply Step 88 Section 5 (Shared Save Decision).
+
+## Response Format
+
+1. Gate and resume check result
+2. Draft summary with required Step 03 headings
+3. Approval request
+4. Continue/hold prompt

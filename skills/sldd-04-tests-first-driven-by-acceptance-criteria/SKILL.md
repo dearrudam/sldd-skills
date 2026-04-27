@@ -1,6 +1,6 @@
 ---
 name: sldd-04-tests-first-driven-by-acceptance-criteria
-description: Write test files driven by acceptance criteria in strict TDD mode. No production code is generated. Use after the low-level design is approved.
+description: Execute strict TDD Red phase by writing tests first and saving failing-test evidence.
 metadata:
   step: "04"
   type: implementation
@@ -8,30 +8,62 @@ metadata:
 
 # Skill: Tests First Driven by Acceptance Criteria
 
-**Context:**
-You are a senior engineer working in strict test-driven development (TDD) mode. You have a low-level design and acceptance criteria. Tests must be written first, before any production code.
+Use `sldd-88-shared-templates-and-protocols` for shared gates, save decision, and templates.
 
-Low-level design: <provide the approved low-level design>
+## Objective
 
-Acceptance criteria: <provide the acceptance criteria from the product intent specification>
+Execute Step 04 in strict Red phase by creating tests first, proving they fail, and capturing auditable evidence.
 
-**Objective:**
-Write test files that directly correspond to the acceptance criteria and test scenarios. These tests will drive implementation. Do not write production code yet.
+## Gate + Resume Checks
 
-**Audience:**
-Engineers who will run these tests immediately and implement code to make them pass.
+- Require Step 01, Step 02, and Step 03 approved.
+- For existing codebases, require Step 99 approved.
+- Reject skip-ahead requests to implementation.
+- Reject inconsistent checklist states.
 
-**Style:**
-Test code in the project's native test framework. One test per clearly named scenario. Include brief comments explaining what each test validates.
+## Strict Red-Phase Contract
 
-**Tone:**
-Explicit. Each test must map to one acceptance criterion. Leave no ambiguity about what passes or fails.
+- Tests first; no production logic.
+- Allowed stubs: signatures/structure only, raise "not implemented" equivalent.
+- Forbidden: business logic, validation logic, placeholder returns (`0`, `""`, `false`, `null`).
+- Every Step 04 test run must fail.
 
-**Response:**
-Deliver:
-- Test files (write actual test code using the project's test framework)
-- One test per acceptance criterion, plus at least one edge case test per criterion
-- Brief comments for each test explaining what it validates
-- Commands to run the test suite
+## Draft Output (Two-Phase Protocol)
 
-Imperative: Write tests only. Do not write any production code. Do not implement any features. Your output is test files only.
+### Phase A: Test Action Plan
+Present proposed test files, scenarios, and commands. Approve before writing tests or running commands.
+
+### Phase B: Red-Phase Evidence Report
+After execution, present failing-output evidence. Approve before saving.
+
+## Required Evidence
+
+- Acceptance criteria -> tests mapping
+- At least one edge case per criterion
+- Exact test commands
+- Failing output summary
+- Explicit Red confirmation
+
+## Approval Protocol
+
+- Follow Step 88 two-phase approval behavior:
+  - approve Phase A plan before writing tests or running commands,
+  - approve Phase B evidence report before saving artifacts.
+- Use `sldd-88-approval-helper` approval messaging.
+
+## Save Flow (after approval)
+
+1. Save `docs/specs/<feature-name>/04-tests-first-report.md`.
+2. Verify artifact contains Step 04 report only.
+3. Update `SPEC.md` Step 04 `[x]` with link.
+4. Verify `SPEC.md` remains journal-only.
+5. Use `sldd-88-approval-helper` completion prompt.
+
+Apply Step 88 Section 5 (Shared Save Decision).
+
+## Response Format
+
+1. Gate and resume check result
+2. Phase A test action plan
+3. Phase B red-phase evidence summary
+4. Approval request and continue/hold prompt

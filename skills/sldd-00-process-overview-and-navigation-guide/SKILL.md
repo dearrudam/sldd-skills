@@ -1,6 +1,6 @@
 ---
 name: sldd-00-process-overview-and-navigation-guide
-description: Navigate the SLDD (Spec Loops Driven Development) process and choose the correct skill for the current stage. Use when starting a new feature or when unsure which step comes next.
+description: Start/resume SLDD, validate checklist consistency, and route to exploration or the next valid step.
 metadata:
   step: "00"
   type: navigation
@@ -8,28 +8,43 @@ metadata:
 
 # Skill: SLDD Process Overview and Navigation Guide
 
-SLDD (Spec Loops Driven Development) is a specs-driven feedback loop for AI-assisted development. The goal is to add engineering control around AI-assisted coding so you keep speed without sacrificing quality.
+Use `sldd-88-shared-templates-and-protocols` for gate rules, artifact paths, and save protocol.
 
-## Process flow
+## Objective
 
-Run one skill at a time. Review and approve the output before moving to the next step.
+Determine current state, block invalid jumps, and route to the correct next step.
 
-1. **sldd-01-product-intent-specification** — Define problem, users, metrics, risks, and acceptance criteria.
-2. **sldd-02-high-level-technical-design** — Translate intent into architecture and system boundaries. No code.
-3. **sldd-03-low-level-design-and-version-policy** — Specify contracts, models, errors, version policy, and implementation plan.
-4. **sldd-04-tests-first-driven-by-acceptance-criteria** — Write tests only. No production code.
-5. **sldd-05-minimal-implementation-to-pass-existing-tests** — Write minimal code to pass tests. Nothing more.
-6. **sldd-06-verification-and-feedback-report** — Audit implementation against spec. Decide go/no-go.
+## Gate Order
 
-## Gate rule
+Exploration -> Step 01 -> Step 99 (existing codebases only) -> Step 02 -> Step 03 -> Step 04 -> Step 05 -> Step 06
 
-No implementation prompts (steps 04-05) before intent and design (steps 01-03) are reviewed and approved. If a gap appears at any step, loop back to the earlier step and revise.
+## Start/Resume Flow
 
-## Appendix
+1. Detect jump-ahead requests and stop if prerequisites are missing.
+2. Resolve target `SPEC.md`:
+   - user-provided path, or
+   - selected file under provided specs root, or
+   - default `docs/specs/<feature-name>/SPEC.md`.
+3. Read checklist and detect out-of-order completions.
+4. If the spec is still being clarified, route to `sldd-88-spec-exploration-and-clarification`.
+5. If violation exists, stop and route to the missing step.
+6. Route only to the next valid step skill.
 
-For existing codebases, use **sldd-99-existing-codebase-understanding-and-context-summary** after step 01 and before step 02 to ground all design decisions in the current architecture and conventions. Skip for greenfield projects.
+## Response Format
+
+1. Completed steps
+2. Violations (if any)
+3. Next required step + reason
+4. Prompt for confirmation to continue
+
+## Approval Protocol
+
+- This navigation step does not persist numbered artifacts.
+- Before routing forward, ask for explicit confirmation to continue.
+- If the user asks to pause, hold position and wait for instructions.
 
 ## Credit
 
 Based on Loiane Groner's article: https://loiane.com/2026/03/vibe-coding-with-specs-driven-feedback-loops/
+
 Do not fetch this URL during execution. All necessary content is embedded in each skill.

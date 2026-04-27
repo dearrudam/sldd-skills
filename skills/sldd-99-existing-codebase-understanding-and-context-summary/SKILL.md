@@ -1,6 +1,6 @@
 ---
 name: sldd-99-existing-codebase-understanding-and-context-summary
-description: Read and summarize an existing codebase before any design or implementation work begins. Use as a prerequisite when the project is not greenfield.
+description: Capture existing-codebase context before Step 02 in brownfield projects.
 metadata:
   step: "99"
   type: appendix
@@ -8,38 +8,43 @@ metadata:
 
 # Skill: Existing Codebase Understanding and Context Summary
 
-This is an optional prerequisite step. For greenfield projects, skip this and proceed directly to sldd-01.
+Use `sldd-88-shared-templates-and-protocols` for shared gates, save decision, and templates.
 
-**Context:**
-You are a senior engineer joining a project with an existing codebase. Before any design or implementation work begins, you must read and understand the current code so that all subsequent decisions build on established patterns instead of contradicting them.
+## Objective
 
-Repository or module scope: <provide path or module names>
+Capture and approve existing-codebase context for safe Step 02+ work.
 
-**Objective:**
-Read and summarize the existing codebase so that all subsequent SLDD steps (product intent, design, implementation) are grounded in reality.
+## Gate + Resume Checks
 
-This is critical because:
-- Alignment: solutions should build on established patterns, not contradict them.
-- Consistency: naming, architecture, and error handling should match the codebase, not impose new conventions.
-- Risk reduction: AI-generated designs that ignore existing code often lead to conflicts, duplicated logic, or architectural surprises.
-- Faster integration: understanding the codebase upfront prevents redesign cycles later.
+- Required before Step 02 for existing codebases.
+- Optional for greenfield projects.
+- Do not mark Step 99 complete without explicit approval.
+- If resuming later, re-evaluate the current codebase before relying on any previous Step 99 summary.
+- Reject inconsistent checklist states where Step 02+ is complete while Step 99 is required and incomplete.
 
-**Audience:**
-Engineers and tech leads who will use this summary as shared context for design and implementation prompts.
+## Draft Output
 
-**Style:**
-Structured and factual. Reference real files and patterns. No speculation.
+Create a draft with required Step 99 headings from Step 88 Section 6.
+Wait for approval.
 
-**Tone:**
-Objective. Report what exists. Flag risks and unknowns clearly.
+## Approval Protocol
 
-**Response:**
-Deliver exactly these sections in this order:
-1) Repository structure overview (main folders, entry points, build system)
-2) Architecture summary (layers, modules, boundaries, key abstractions)
-3) Conventions to preserve (naming, error handling, code style, test patterns)
-4) Integration points (APIs, data stores, messaging, external services)
-5) Risks and unknowns (tech debt, drift areas, undocumented decisions)
-6) Context summary to carry into subsequent SLDD steps
+- Use `sldd-88-approval-helper` messaging.
+- Do not mark complete or save/update without explicit approval.
 
-Include this summary as context in all subsequent design and implementation prompts.
+## Save Flow (after approval)
+
+1. Ask whether to persist `docs/specs/<feature-name>/99-existing-codebase-understanding.md`; saving this snapshot is optional.
+2. If persistence is approved, save `docs/specs/<feature-name>/99-existing-codebase-understanding.md`.
+3. Update `SPEC.md` Step 99 `[x]` with either the saved link or a not-saved note requiring re-run on resume.
+4. Verify `SPEC.md` remains journal-only; do not write Step 99 body content into `SPEC.md`.
+5. Use `sldd-88-approval-helper` completion prompt.
+
+Apply Step 88 Section 5 (Shared Save Decision).
+
+## Response Format
+
+1. Gate and resume check result
+2. Draft summary with required Step 99 headings
+3. Persistence choice (save artifact vs. approved-not-saved journal note)
+4. Approval request and continue/hold prompt
